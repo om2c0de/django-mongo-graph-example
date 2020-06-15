@@ -2,6 +2,7 @@ aniso8601==7.0.0
 asgiref==3.2.7
 attrs==19.3.0
 Django==3.0.6
+django-auth-ldap==2.2.0
 graphene==2.1.8
 graphene-django==2.10.1
 graphene-mongo==0.2.12
@@ -15,10 +16,13 @@ packaging==20.4
 pluggy==0.13.1
 promise==2.3
 py==1.8.1
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
 pymongo==3.10.1
 pyparsing==2.4.7
 pytest==5.4.2
 pytest-django==3.9.0
+python-ldap==3.2.0
 pytz==2020.1
 Rx==1.6.1
 sentinels==1.0.0

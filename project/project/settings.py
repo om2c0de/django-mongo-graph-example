@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+
+import ldap
 import mongoengine
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django_auth_ldap.config import LDAPSearch
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -27,8 +30,7 @@ SECRET_KEY = '^!2z&q=oj(6u+ne==nmnmdawhta^pi^p-3!-!4lfrr@t2r%*@9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 # Application definition
 
@@ -47,6 +49,22 @@ INSTALLED_APPS = [
     # Custom applications
     "apps.core"
 ]
+
+# Keep ModelBackend around for per-user permissions and maybe a local superuser.
+AUTHENTICATION_BACKENDS = [
+    "django_auth_ldap.backend.LDAPBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+AUTH_LDAP_SERVER_URI = "ldap://active-directory"
+
+AUTH_LDAP_BIND_DN = "uid=admin,ou=system"
+
+AUTH_LDAP_BIND_PASSWORD = "secret"
+
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+    "ou=users,dc=wimpi,dc=net", ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
