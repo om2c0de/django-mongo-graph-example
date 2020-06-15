@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Third-party applications
     "graphene_django",
     "graphene_mongo",
+    "graph_auth",
 
     # Custom applications
     "apps.core"
@@ -62,9 +63,18 @@ AUTH_LDAP_BIND_DN = "uid=admin,ou=system"
 
 AUTH_LDAP_BIND_PASSWORD = "secret"
 
+AUTH_LDAP_USER_ATTR_MAP = {"first_name": "givenName", "last_name": "sn"}
+
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
     "ou=users,dc=wimpi,dc=net", ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
 )
+
+GRAPH_AUTH = {
+    'USER_FIELDS': ('email', 'first_name', 'last_name', ),    # Which user fields are available
+    'ONLY_ADMIN_REGISTRATION': False,    # Only allow admins to register new users
+    'WELCOME_EMAIL_TEMPLATE': None,    # Email template for optional welcome email, user object fields is in scope
+    'EMAIL_FROM': None    # Email from for welcome email
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

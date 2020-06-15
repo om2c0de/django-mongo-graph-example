@@ -1,8 +1,9 @@
 import graphene
 from graphene.relay import Node
 from graphene_mongo.fields import MongoengineConnectionField
-from .types import BarrelRateType
+
 from .mutations import BarrelRateMutationCreate, BarrelRateMutationUpdate, BarrelRateMutationDelete
+from .types import BarrelRateType
 
 
 class Mutations(graphene.ObjectType):
