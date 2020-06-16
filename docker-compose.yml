@@ -1,15 +1,15 @@
 version: '3'
 
 services:
-  backend:
-    build: project
-    ports:
-      - "8000:8000"
+#  backend:
+#    build: project
+#    ports:
+#      - "8000:8000"
   db:
     image: mongo:4.2.7
     ports:
       - "12017:12018"
-  active-directory:
+  ldap:
     image: dwimberger/ldap-ad-it
     ports:
       -  "10389:10389"
