@@ -57,7 +57,7 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-AUTH_LDAP_SERVER_URI = "ldap://active-directory"
+AUTH_LDAP_SERVER_URI = "ldap://127.0.0.1:10389"
 
 AUTH_LDAP_BIND_DN = "uid=admin,ou=system"
 
@@ -167,4 +167,5 @@ _MONGODB_DATABASE_HOST = f"mongodb://{_MONGODB_USER}:{_MONGODB_PASSWORD}@{_MONGO
 
 mongoengine.connect(_MONGODB_NAME, host=_MONGODB_HOST, port=_MONGODB_PORT)
 
-GRAPHENE = {"SCHEMA": "apps.core.schema.schema"}
+# GRAPHENE = {"SCHEMA": "apps.core.schema.schema"}
+GRAPHENE = {"SCHEMA": "apps.users.schema.schema"}
