@@ -17,4 +17,4 @@ class Query(graphene.ObjectType):
     barrel_rates = MongoengineConnectionField(BarrelRateType)
 
 
-# schema = graphene.Schema(query=Query, mutation=Mutations, types=[BarrelRateType])
+schema = graphene.Schema(query=Query, mutation=Mutations, types=[BarrelRateType])

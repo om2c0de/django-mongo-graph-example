@@ -45,10 +45,10 @@ INSTALLED_APPS = [
     # Third-party applications
     "graphene_django",
     "graphene_mongo",
-    "graph_auth",
 
     # Custom applications
-    "apps.core"
+    "apps.core",
+    "apps.users"
 ]
 
 # Keep ModelBackend around for per-user permissions and maybe a local superuser.
@@ -69,12 +69,6 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch(
     "ou=users,dc=wimpi,dc=net", ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
 )
 
-GRAPH_AUTH = {
-    'USER_FIELDS': ('email', 'first_name', 'last_name', ),    # Which user fields are available
-    'ONLY_ADMIN_REGISTRATION': False,    # Only allow admins to register new users
-    'WELCOME_EMAIL_TEMPLATE': None,    # Email template for optional welcome email, user object fields is in scope
-    'EMAIL_FROM': None    # Email from for welcome email
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -167,5 +161,5 @@ _MONGODB_DATABASE_HOST = f"mongodb://{_MONGODB_USER}:{_MONGODB_PASSWORD}@{_MONGO
 
 mongoengine.connect(_MONGODB_NAME, host=_MONGODB_HOST, port=_MONGODB_PORT)
 
-# GRAPHENE = {"SCHEMA": "apps.core.schema.schema"}
-GRAPHENE = {"SCHEMA": "apps.users.schema.schema"}
+GRAPHENE = {"SCHEMA": "apps.core.schema.schema"}
+# GRAPHENE = {"SCHEMA": "apps.users.schema.schema"}
